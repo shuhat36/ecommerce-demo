@@ -1,8 +1,13 @@
+import { ReactNode } from "react";
 import Footer from "../molecules/footer/Footer";
 import MainNav from "../molecules/navbar/MainNav";
 import TopNav from "../molecules/navbar/TopNav";
 
-function Layout({ children }: any) {
+interface ILayoutProps {
+  children: ReactNode;
+}
+
+function Layout({ children }: ILayoutProps) {
   return (
     <>
       <TopNav />
