@@ -6,7 +6,7 @@ import ProductList from "../components/organisms/ProductList";
 import Layout from "../components/templates/Layout";
 import { useProductData } from "../hooks/useProductData";
 import { IProduct } from "../interfaces";
-import { sortProductsData } from "../services/api/utils/sortProducts";
+import { sortProductsData } from "../services/utils/sortProducts";
 
 function Products() {
   const [selectedSortOption, setSelectedSortOption] = useState("");

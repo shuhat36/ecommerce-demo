@@ -1,4 +1,4 @@
-import { IProduct } from "../../../interfaces";
+import { IProduct } from "../../interfaces";
 
 export const sortProductsData = (productsData:IProduct[],selectedSortOption: string): IProduct[] => {
     if (productsData) {
