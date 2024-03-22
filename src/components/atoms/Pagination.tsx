@@ -16,7 +16,7 @@ const Pagination = ({
       breakLabel={"..."}
       containerClassName={"pagination flex justify-center mt-4"}
       activeClassName={"active rounded p-2 bg-gray-700 text-white"}
-      pageClassName={"mx-1 p-2"}
+      pageClassName={"mx-1 p-2 "}
       previousClassName={"mx-1 rounded bg-gray-700 text-white p-2"}
       nextClassName={"mx-1 rounded bg-gray-700 text-white p-2"}
     />

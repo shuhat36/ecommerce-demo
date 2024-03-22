@@ -7,7 +7,7 @@ import {
   Box,
   Checkbox,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ICategoryProps } from "../../interfaces";
 
 function FilterAccordion({
@@ -16,6 +16,10 @@ function FilterAccordion({
   onCategoryChange,
 }: ICategoryProps) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    onCategoryChange(selectedCategories);
+  }, [selectedCategories]);
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const category = e.target.value;
@@ -28,9 +32,8 @@ function FilterAccordion({
         return prevState.filter((cat) => cat !== category);
       }
     });
-    console.log("ss0", selectedCategories);
-    onCategoryChange(selectedCategories);
   };
+  console.log("ss0", selectedCategories);
 
   return (
     <>

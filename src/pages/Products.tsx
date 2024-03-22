@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import DropDown from "../components/atoms/DropDown";
 import SideBar from "../components/molecules/sidebar/SideBar";
 import ProductList from "../components/organisms/ProductList";
@@ -14,10 +14,13 @@ function Products() {
   const handleSortChange = (selectedOption: string) => {
     setSelectedSortOption(selectedOption);
   };
-  const handleCategoryChange = (selectedCats: string[]) => {
-    setSelectedCategories(selectedCats);
-    console.log("ss1", selectedCategories);
-  };
+  const handleCategoryChange = useCallback(
+    (selectedCats: string[]) => {
+      setSelectedCategories(selectedCats);
+      console.log("ss1", selectedCategories);
+    },
+    [selectedCategories]
+  );
 
   const { data: productsData, isLoading, isError } = useProductData();
 

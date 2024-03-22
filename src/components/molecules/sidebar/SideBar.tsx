@@ -1,4 +1,5 @@
 import { Box } from "@chakra-ui/react";
+import { useCallback } from "react";
 import FilterAccordion from "../../atoms/FilterAccordion";
 
 interface SideBarProps {
@@ -6,9 +7,12 @@ interface SideBarProps {
 }
 
 function SideBar({ onCategoryChange }: SideBarProps) {
-  const handleCategoryChange = (selectedCategories: string[]) => {
-    onCategoryChange(selectedCategories);
-  };
+  const handleCategoryChange = useCallback(
+    (selectedCategories: string[]) => {
+      onCategoryChange(selectedCategories);
+    },
+    [onCategoryChange]
+  );
 
   return (
     <Box className="h-screen mt-4 w-48">

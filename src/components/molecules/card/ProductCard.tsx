@@ -4,7 +4,6 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Divider,
   Heading,
   Image,
   Stack,
@@ -31,7 +30,6 @@ function ProductCard({ title, image, category, price }: IProduct) {
             </Text>
           </Stack>
         </CardBody>
-        <Divider />
         <CardFooter>
           <ButtonGroup spacing="2">
             <Button variant="solid" className="bg-gray-900">
