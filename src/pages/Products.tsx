@@ -6,7 +6,7 @@ import ProductList from "../components/organisms/ProductList";
 import Layout from "../components/templates/Layout";
 import { useProductData } from "../hooks/useProductData";
 import { IProduct } from "../interfaces";
-import { sortProductsData } from "../services/api/utils/sortProduct";
+import { sortProductsData } from "../services/api/utils/sortProducts";
 
 function Products() {
   const [selectedSortOption, setSelectedSortOption] = useState("");
@@ -16,7 +16,7 @@ function Products() {
   };
   const handleCategoryChange = (selectedCats: string[]) => {
     setSelectedCategories(selectedCats);
-    console.log("ss", selectedCategories);
+    console.log("ss1", selectedCategories);
   };
 
   const { data: productsData, isLoading, isError } = useProductData();

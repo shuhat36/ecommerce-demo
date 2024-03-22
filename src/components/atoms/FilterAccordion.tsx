@@ -26,14 +26,14 @@ function FilterAccordion({
     const category = e.target.value;
     const isChecked = e.target.checked;
 
-    setSelectedCategories((prevSelectedCategories) => {
+    setSelectedCategories((prevState) => {
       if (isChecked) {
-        return [...prevSelectedCategories, category];
+        return [...prevState, category];
       } else {
-        return prevSelectedCategories.filter((cat) => cat !== category);
+        return prevState.filter((cat) => cat !== category);
       }
     });
-
+    console.log("ss0", selectedCategories);
     onCategoryChange(selectedCategories);
   };
 
