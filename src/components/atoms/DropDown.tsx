@@ -1,10 +1,6 @@
 import { Select } from "@chakra-ui/react";
+import { IDropDownProps } from "../../interfaces";
 
-interface IDropDownProps {
-  Title: string;
-  Options: string[];
-  onSelectChange: (selectedOption: string) => void;
-}
 function DropDown({ Title, Options, onSelectChange }: IDropDownProps) {
   return (
     <Select

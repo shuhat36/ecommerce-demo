@@ -8,12 +8,7 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
-interface ICategoryProps {
-  Title: string;
-  Categories: string[];
-  onCategoryChange: (selectedCategories: string[]) => void;
-}
+import { ICategoryProps } from "../../interfaces";
 
 function FilterAccordion({
   Title,

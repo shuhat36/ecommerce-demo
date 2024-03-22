@@ -1,12 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-import { IProduct } from "../../interfaces";
+import { IProduct, ProductListProps } from "../../interfaces";
 import Pagination from "../atoms/Pagination";
 import ProductCard from "../molecules/card/ProductCard";
-
-interface ProductListProps {
-  productsData: IProduct[];
-}
 
 function ProductList({ productsData }: ProductListProps) {
   const [currentPage, setCurrentPage] = useState(0);

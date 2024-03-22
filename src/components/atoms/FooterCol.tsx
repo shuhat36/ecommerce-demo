@@ -1,7 +1,4 @@
-interface IFooterCol {
-  Title: string;
-  Items: string[];
-}
+import { IFooterCol } from "../../interfaces";
 
 function FooterCol({ Title, Items }: IFooterCol) {
   return (

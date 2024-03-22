@@ -23,6 +23,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import { NavItem } from "../../../interfaces";
 import Logo from "/nike.svg";
 
 export default function MainNav() {
@@ -237,13 +238,6 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     </Stack>
   );
 };
-
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
-  href?: string;
-}
 
 const NAV_ITEMS: Array<NavItem> = [
   {
