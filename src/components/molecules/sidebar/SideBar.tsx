@@ -3,12 +3,16 @@ import FilterAccordion from "../../atoms/FilterAccordion";
 
 function SideBar() {
   return (
-    <Box className="w-1/6 h-screen mt-4">
-      <Box>
-        <FilterAccordion />
-        <FilterAccordion />
-        <FilterAccordion />
-      </Box>
+    <Box className="h-screen mt-4 w-48">
+      <FilterAccordion
+        Title="Category"
+        Categories={[
+          "men's clothing",
+          "jewelery",
+          "electronics",
+          "women's clothing",
+        ]}
+      />
     </Box>
   );
 }
