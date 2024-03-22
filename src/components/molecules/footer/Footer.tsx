@@ -5,7 +5,7 @@ import FooterCol from "../../atoms/FooterCol";
 
 function Footer() {
   return (
-    <div className="flex justify-between bg-slate-950	 py-8 text-neutral-50 px-12 text-xs">
+    <div className="flex flex-wrap justify-between bg-slate-950	 py-8 text-neutral-50 px-12 text-xs">
       <div
         className="flex flex-col gap-3 "
         style={{ fontFamily: "Big Shoulders", fontWeight: 600 }}
