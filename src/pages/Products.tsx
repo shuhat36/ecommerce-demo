@@ -1,4 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import DropDown from "../components/atoms/DropDown";
 import SideBar from "../components/molecules/sidebar/SideBar";
@@ -8,6 +9,11 @@ import { IProduct } from "../interfaces";
 import { fetchProductData } from "../services/api/ProductListApi";
 
 function Products() {
+  const [selectedSortOption, setSelectedSortOption] = useState("");
+  const handleSortChange = (selectedOption: string) => {
+    setSelectedSortOption(selectedOption);
+  };
+
   const {
     data: productsData,
     isLoading,
@@ -31,6 +37,32 @@ function Products() {
   }
 
   console.log("productsData", productsData);
+
+  const sortedProductsData = (): IProduct[] => {
+    if (productsData) {
+      if (selectedSortOption === "Price: High to Low") {
+        return [...productsData].sort(
+          (a, b) => (b.price ?? 0) - (a.price ?? 0)
+        );
+      } else if (selectedSortOption === "Price: Low to High") {
+        return [...productsData].sort(
+          (a, b) => (a.price ?? 0) - (b.price ?? 0)
+        );
+      } else if (selectedSortOption === "Rating: Low to High") {
+        return [...productsData].sort(
+          (a, b) => (a.rating?.rate ?? 0) - (b.rating?.rate ?? 0)
+        );
+      } else if (selectedSortOption === "Rating: High to Low") {
+        return [...productsData].sort(
+          (a, b) => (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0)
+        );
+      } else {
+        return productsData;
+      }
+    }
+    return [];
+  };
+
   return (
     <Layout>
       <Box className="my-8">
@@ -44,6 +76,7 @@ function Products() {
               "Rating: Low to High",
               "Rating: High to Low",
             ]}
+            onSelectChange={handleSortChange}
           />
         </Box>
 
@@ -53,7 +86,7 @@ function Products() {
           </Box>
 
           <Box className="w-5/8 grow">
-            <ProductList productsData={productsData as IProduct[]} />
+            <ProductList productsData={sortedProductsData()} />
           </Box>
         </Box>
       </Box>
