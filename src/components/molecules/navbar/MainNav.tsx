@@ -97,7 +97,6 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Box
                 as="a"
-                // p={2}
                 href={navItem.href ?? "#"}
                 fontSize={"sm"}
                 fontWeight={500}

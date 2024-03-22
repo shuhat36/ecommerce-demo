@@ -1,24 +1,33 @@
 import { Box, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import { useQuery } from "react-query";
 import DropDown from "../components/atoms/DropDown";
 import SideBar from "../components/molecules/sidebar/SideBar";
 import ProductList from "../components/organisms/ProductList";
 import Layout from "../components/templates/Layout";
+import { useProductData } from "../hooks/useProductData";
 import { IProduct } from "../interfaces";
-import { fetchProductData } from "../services/api/ProductListApi";
+import { sortProductsData } from "../services/api/utils/sortProduct";
 
 function Products() {
   const [selectedSortOption, setSelectedSortOption] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const handleSortChange = (selectedOption: string) => {
     setSelectedSortOption(selectedOption);
   };
+  const handleCategoryChange = (selectedCats: string[]) => {
+    setSelectedCategories(selectedCats);
+    console.log("ss", selectedCategories);
+  };
 
-  const {
-    data: productsData,
-    isLoading,
-    isError,
-  } = useQuery<IProduct[]>("products", fetchProductData);
+  const { data: productsData, isLoading, isError } = useProductData();
+
+  let filteredProductsData = productsData;
+
+  if (selectedCategories.length > 0) {
+    filteredProductsData = productsData?.filter((product) =>
+      selectedCategories.includes(product.category as string)
+    );
+  }
 
   if (isLoading) {
     return (
@@ -37,31 +46,6 @@ function Products() {
   }
 
   console.log("productsData", productsData);
-
-  const sortedProductsData = (): IProduct[] => {
-    if (productsData) {
-      if (selectedSortOption === "Price: High to Low") {
-        return [...productsData].sort(
-          (a, b) => (b.price ?? 0) - (a.price ?? 0)
-        );
-      } else if (selectedSortOption === "Price: Low to High") {
-        return [...productsData].sort(
-          (a, b) => (a.price ?? 0) - (b.price ?? 0)
-        );
-      } else if (selectedSortOption === "Rating: Low to High") {
-        return [...productsData].sort(
-          (a, b) => (a.rating?.rate ?? 0) - (b.rating?.rate ?? 0)
-        );
-      } else if (selectedSortOption === "Rating: High to Low") {
-        return [...productsData].sort(
-          (a, b) => (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0)
-        );
-      } else {
-        return productsData;
-      }
-    }
-    return [];
-  };
 
   return (
     <Layout>
@@ -82,11 +66,16 @@ function Products() {
 
         <Box className="flex w-full">
           <Box className="grow-0">
-            <SideBar />
+            <SideBar onCategoryChange={handleCategoryChange} />
           </Box>
 
           <Box className="w-5/8 grow">
-            <ProductList productsData={sortedProductsData()} />
+            <ProductList
+              productsData={sortProductsData(
+                filteredProductsData as IProduct[],
+                selectedSortOption
+              )}
+            />
           </Box>
         </Box>
       </Box>

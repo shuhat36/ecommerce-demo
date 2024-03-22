@@ -9,7 +9,7 @@ interface ProductListProps {
 }
 
 function ProductList({ productsData }: ProductListProps) {
-  const [currentPage, setCurrentPage] = useState(0); // State to manage current page
+  const [currentPage, setCurrentPage] = useState(0);
 
   const itemsPerPage = 9;
 
