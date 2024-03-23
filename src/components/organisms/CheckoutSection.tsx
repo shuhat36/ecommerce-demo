@@ -11,7 +11,11 @@ import {
 import { MdOutlineLocalShipping, MdOutlineLocationOn } from "react-icons/md";
 import SolidButton from "../atoms/SolidButton";
 
-function CheckoutSection() {
+function CheckoutSection({
+  onSaveAndContinue,
+}: {
+  onSaveAndContinue: () => void;
+}) {
   return (
     <Box className="w-full flex-col flex-wrap gap-4 justify-start mb-4">
       <Text fontWeight={"semibold"} fontSize={"2xl"} className="mx-4">
@@ -67,7 +71,7 @@ function CheckoutSection() {
         </TabPanels>
       </Tabs>
       <Box className="flex flex-row-reverse	mr-4">
-        <SolidButton text="Save & Continue" />
+        <SolidButton onClick={onSaveAndContinue} text="Save & Continue" />
       </Box>
     </Box>
   );
