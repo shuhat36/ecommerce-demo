@@ -21,13 +21,7 @@ function ProductList({ productsData }: ProductListProps) {
     <>
       <Box className="flex flex-wrap justify-center gap-y-6">
         {displayedProducts?.map((product: IProduct) => (
-          <ProductCard
-            key={product.id}
-            title={product.title}
-            price={product.price}
-            image={product.image}
-            category={product.category}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </Box>
       <Pagination

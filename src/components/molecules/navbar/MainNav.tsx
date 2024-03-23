@@ -1,7 +1,6 @@
 "use client";
 import { Icon } from "@chakra-ui/react";
 import { FaRegHeart } from "react-icons/fa";
-import { HiOutlineShoppingBag } from "react-icons/hi";
 
 import {
   ChevronDownIcon,
@@ -23,12 +22,15 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useContext } from "react";
+import CartContext from "../../../contexts/CartContext";
 import { NavItem } from "../../../interfaces";
+import CartIcon from "../../atoms/CartIcon";
 import Logo from "/nike.svg";
 
 export default function MainNav() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const { cart } = useContext(CartContext);
   return (
     <Box>
       <Flex
@@ -73,7 +75,7 @@ export default function MainNav() {
           </Flex>
           <Flex gap={2} my={"auto"}>
             <FaRegHeart size={24} className="cursor-pointer" />
-            <HiOutlineShoppingBag size={24} className="cursor-pointer" />
+            <CartIcon quantity={cart.length} />
           </Flex>
         </Flex>
       </Flex>
