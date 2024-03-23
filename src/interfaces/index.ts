@@ -11,6 +11,15 @@ export interface IProduct {
     };
   }
 
+  export interface ICartData {
+    userId: number;
+    date: string; 
+    products: {
+      productId: number;
+      quantity: number;
+    }[];
+  }
+
   export interface IDropDownProps {
     Title: string;
     Options: string[];

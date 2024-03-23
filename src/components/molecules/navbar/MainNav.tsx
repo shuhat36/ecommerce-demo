@@ -23,6 +23,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CartContext from "../../../contexts/CartContext";
 import { NavItem } from "../../../interfaces";
 import CartIcon from "../../atoms/CartIcon";
@@ -75,7 +76,9 @@ export default function MainNav() {
           </Flex>
           <Flex gap={2} my={"auto"}>
             <FaRegHeart size={24} className="cursor-pointer" />
-            <CartIcon quantity={cart.length} />
+            <Link to="/checkout">
+              <CartIcon quantity={cart.length} />
+            </Link>
           </Flex>
         </Flex>
       </Flex>
@@ -145,13 +148,13 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       display={"block"}
       p={2}
       rounded={"md"}
-      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+      _hover={{ bg: useColorModeValue("gray.50", "gray.900") }}
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
           <Text
             transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
+            _groupHover={{ color: "gray.400" }}
             fontWeight={500}
           >
             {label}
@@ -167,7 +170,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           align={"center"}
           flex={1}
         >
-          <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
+          <Icon color={"gray.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
     </Box>

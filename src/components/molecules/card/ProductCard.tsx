@@ -8,13 +8,22 @@ import {
   Image,
   Stack,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CartContext from "../../../contexts/CartContext";
 import { IProduct } from "../../../interfaces";
+import { CartModal } from "../../organisms/CartModal";
 
 function ProductCard({ product }: { product: IProduct }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { addToCart } = useContext(CartContext);
+
+  const handleAddToCart = (product: IProduct) => {
+    addToCart(product);
+    onOpen();
+  };
   return (
     <>
       <Card maxW="sm" size="sm" className="flex-col gap-4">
@@ -35,11 +44,17 @@ function ProductCard({ product }: { product: IProduct }) {
         </CardBody>
         <CardFooter>
           <ButtonGroup spacing="2">
-            <Button variant="solid" className="bg-gray-900">
-              Buy now
-            </Button>
+            <Link to="/checkout">
+              <Button
+                variant="solid"
+                className="bg-gray-900"
+                onClick={() => addToCart(product)}
+              >
+                Buy now
+              </Button>
+            </Link>
             <Button
-              onClick={() => addToCart(product)}
+              onClick={() => handleAddToCart(product)}
               variant="ghost"
               colorScheme="bg-gray-900"
             >
@@ -48,6 +63,7 @@ function ProductCard({ product }: { product: IProduct }) {
           </ButtonGroup>
         </CardFooter>
       </Card>
+      <CartModal onClose={onClose} isOpen={isOpen} />
     </>
   );
 }
